@@ -1,0 +1,104 @@
+﻿
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left mt-4">
+                <p>
+                    Copyright 2019 © The2FurnitureTeam@student.tdmu.edu.vn
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<!--Modal For Registation-->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="agilemodal-dialog modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pt-3 pb-5 px-sm-5">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <img src="~/Images/table.jpg" class="img-fluid" alt="login_image" />
+                        <p class="pt-5">
+                            Excepteur sint occaecat non proident, sunt in culpa quis. Phasellus lacinia id erat eu ullamcorper. Nunc id ipsum fringilla, gravida felis vitae. Phasellus lacinia id, sunt in culpa quis.
+                        </p>
+                    </div>
+                    @if (ViewBag.status != null && Convert.ToBoolean(ViewBag.status))
+                    {
+                        if (ViewBag.message != null)
+                        {
+                            <div class="alert alert-success">
+                                <strong>Success!</strong>@ViewBag.message
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-6" id="divEmp">
+                            @{
+                                Html.RenderPartial("~/Views/Shared/RegisterView.cshtml", new Web_NoiThat.Models.Extended.UserMetadata());
+                            }
+                            <p class="text-center mt-3">
+                                Already a member?
+                                <a id="redirectToLogin" href="#" data-toggle="modal" data-target="#SignIn" class="text-dark login_btn">
+                                    Login Now
+                                </a>
+                            </p>
+                        </div>
+                    }
+                    <script>
+                        //Hide modal when success
+                        $("#redirectToLogin").click(function () {
+                            $('#modal').modal("hide");
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal For Registation-->
+<!--Modal For SignIn-->
+
+<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="SignIn" aria-hidden="true">
+    <div class="agilemodal-dialog modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body  pt-3 pb-5 px-sm-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="~/Images/table_login.jpg" class="img-fluid" alt="login_image" />
+                        <p class="pt-5">
+                            Excepteur sint occaecat non proident, sunt in culpa quis. Phasellus lacinia id erat eu ullamcorper. Nunc id ipsum fringilla,
+                            gravida felis vitae. Phasellus lacinia id, sunt in culpa quis.
+                        </p>
+                    </div>
+                    @{
+                        Html.RenderPartial("~/Views/Shared/LoginView.cshtml", new Web_NoiThat.Models.UserLogin());
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal for SignIn-->
+@section Scripts{
+    @Scripts.Render("~/bundles/validate")
+}
+
+</body>

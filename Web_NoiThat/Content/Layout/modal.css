@@ -1,0 +1,26 @@
+﻿
+@media (min-width: 576px) {
+    .agilemodal-dialog {
+        max-width: 750px !important;
+        margin: 5rem auto;
+    }
+    .agilemodal-dialog2 {
+        max-width: 1000px !important;
+        margin: 5rem auto;
+    }
+}
+.modal-title {
+    font-size: 28px !important;
+    font-weight: 700;
+    padding: 0 !important;
+    letter-spacing: 2px;
+    color: #333;
+    width: 100%;
+    text-align: center;
+}
+.modal-body {
+    line-height: 30px;
+    font-size: 16px;
+    letter-spacing: .5px;
+    color: #888;
+}

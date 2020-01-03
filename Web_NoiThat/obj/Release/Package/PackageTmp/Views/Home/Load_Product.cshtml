@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Web_NoiThat.Models.Product>
+
+@{
+    var linkAction = "Detail";
+}
+
+<section class="Furniture-product" id="furniture">
+    <div class="container">
+        <h3 class="heading mb-5 text-center">Our Furniture</h3>
+        <div class="row">
+            <div class="product-grids">
+                @foreach (var item in Model)
+                {
+                    <figure class="col-lg-2 col-md-3 col-sm-12 imghvr-fade" style="background-color:#fff;">
+                        <img src="~/@item.product_img" alt="anh_furniture">
+                        <figcaption>
+                            <button type="button" id="@item.product_id" class="button-rounded" onclick="return window.location='@linkAction/Index/@item.product_id'" style="font-size:25px; color:#fff; cursor:pointer; position:relative;top:40px">
+                                Quick View
+                            </button>
+                            <button type="button" id="@item.product_id" class="button-rounded button-Cart" onclick="return window.location='@Url.Action("Add_Cart","Cart",new { @id=item.product_id})'" style="font-size:20px; color:#fff; cursor:pointer;position:relative;top:40px"
+                                    data-toggle="popover"  data-content="Add To Cart" data-placement="top" > 
+                                <i class="fa fa-shopping-cart"></i>
+                            </button>
+                        </figcaption>
+                    </figure>
+                }
+                <script>
+                    $(document).ready(function () {
+                        $('[data-toggle="popover"]').popover({ trigger: "hover" });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model List<Web_NoiThat.Models.ProductToDisplay>
+<div class="fresh-table full-color-orange full-screen-table">
+    <table id="fresh-table" class="table">
+        <thead>
+            <tr>
+                <th data-field="stt" data-sortable="true">STT</th>
+                <th data-field="id">ID</th>
+                <th data-field="product_name" data-sortable="true">Product Name</th>
+                <th data-field="description">Description</th>
+                <th data-field="created">Created</th>
+                <th data-field="status">Status</th>
+                <th data-field="category">Category</th>
+                <th data-field="supplier">Supplier</th>
+                <th data-field="action" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@Model[i].product_id</td>
+                    <td><span>@Model[i].product_name</span></td>
+                    <td><span>@Model[i].description</span></td>
+                    <td><span>@Model[i].created_at</span></td>
+                    <td><span>@Model[i].status</span></td>
+                    <td><span>@Model[i].category</span></td>
+                    <td><span>@Model[i].supplier</span></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a title="Add new product" data-toggle="modal" data-target="#product" class="btn btn-primary btn-lg" style="position: fixed; right: 0; bottom: 0; z-index:999">
+        Add new
+    </a>
+
+</div>
+
+<div class="modal fade" id="product" tabindex="-1" role="dialog" aria-labelledby="example" aria-hidden="true">
+    <div class="agilemodal-dialog2 modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pt-3 pb-5 px-sm-5">
+                @{
+                    Html.RenderPartial("~/Views/Admin/Add_Product.cshtml", new Web_NoiThat.Models.Product());
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script>
+        FilePond.registerPlugin(
+            // encodes the file as base64 data
+            FilePondPluginFileEncode,
+            // validates the size of the file
+            FilePondPluginFileValidateSize,
+            // corrects mobile image orientation
+            FilePondPluginImageExifOrientation,
+            // previews dropped images
+            FilePondPluginImagePreview
+        );
+        // Select the file input and use create() to turn it into a pond
+      
+
+        FilePond.create(document.querySelector('.filepond'));
+    </script>
+    <script>
+        FilePond.setOptions({
+            server: '@Url.Action("Get_File", "Admin")',
+        });
+    </script>
+}

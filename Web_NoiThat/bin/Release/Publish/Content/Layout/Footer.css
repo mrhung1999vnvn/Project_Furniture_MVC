@@ -1,0 +1,43 @@
+﻿body {
+}
+
+footer {
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+    margin: 0 auto;
+    position: relative;
+    
+}
+footer .footer-bottom{
+    background:black;
+    padding:10px 0;
+    color:#fff;
+}
+.col {
+    padding:20px;
+    border-top: 1px solid grey
+}
+.col p {
+    font-family:inherit;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1px;
+    line-height: 1.8em;
+}
+.icon-custom{
+    margin:0 5px;
+}
+.icon-custom img {
+    width: 70px;
+    height: 40px;
+}
+.icon-facebook img{
+    width:40px;
+    height:40px;
+}
+.icon-gmail img {
+    width: 40px;
+    height: 40px;
+}

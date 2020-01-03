@@ -1,0 +1,100 @@
+﻿@model Web_NoiThat.Models.Product
+
+@using (Html.BeginForm("Add_Product", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.product_id, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.product_id, new { @class = "form-control", @id = "product-id" })
+                    @Html.ValidationMessageFor(model => model.product_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.product_name, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-12">
+                    @Html.TextBoxFor(model => model.product_name, new { @class = "form-control", @id = "product-name" })
+                    @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 col-sm-12">
+                    @Html.LabelFor(model => model.price, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-8 col-sm-8">
+                    @Html.TextBoxFor(model => model.price, new { @class = "form-control", @id = "price" })
+                    @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 col-sm-12">
+                    <label class="control-label" for="date">Categories:</label>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <select class="form-control form-control-lg" name="category">
+                        <option value="1">Dinning Room</option>
+                        <option value="2">Living Room</option>
+                        <option value="3">Other...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <span class="pt-3">Quantities:</span>
+                </div>
+                <div class="col-md-8">
+                    <div class="input-group input-number-group">
+                        <div class="input-group-button">
+                            <span class="input-number-decrement" style="border-radius:50px">-</span>
+                        </div>
+                        <input class="input-number" style="border-radius:20px" id="quanti" name="quanti" type="number" value="0" min="1">
+                        <div class="input-group-button">
+                            <span class="input-number-increment" style="border-radius:50px">+</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 col-sm-12">
+                    @Html.LabelFor(model => model.description, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <label class="control-label col-sm-12" for="email">Upload Images:</label>
+            @*<input type="file" name="file" />*@
+            <input type="file" class="filepond" name="filepond" id="filepond"
+                   data-max-file-size="3MB" data-max-files="3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10 col-md-12 text-right">
+            <input type="submit" value="Add new product" class="buy--btn"style="border-radius:30px" />
+        </div>
+    </div>
+}
+
+<script>
+    $('.input-number-increment').click(function () {
+        var $input = $(this).parents('.input-number-group').find('.input-number');
+        var val = parseInt($input.val(), 10);
+        $input.val(val + 1);
+    });
+
+    $('.input-number-decrement').click(function () {
+        var $input = $(this).parents('.input-number-group').find('.input-number');
+        var val = parseInt($input.val(), 10);
+        $input.val(val - 1);
+    })
+</script>
+

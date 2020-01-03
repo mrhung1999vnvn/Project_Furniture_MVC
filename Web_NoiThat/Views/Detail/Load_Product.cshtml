@@ -1,0 +1,38 @@
+﻿
+@{
+    var linkAction = "Detail";
+}
+
+@foreach (var item in ViewBag.ListProduct)
+{
+    <div class="item">
+        <div class="col-item">
+            <div class="photo">
+                <img src="/@item.product_img" class="img-responsive" alt="a" />
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="price col-md-6">
+                        <h5>
+                            1
+                        </h5>
+                        <h5 class="price-text-color">
+                            $199.99
+                        </h5>
+                    </div>
+                </div>
+                <div class="separator clear-left">
+                    
+                    <p class="btn-add">
+                        <i class="fa fa-shopping-cart"></i><a id="@item.product_id" href="@Url.Action("Add_Cart","Cart",new { @id=item.product_id})" class="hidden-sm">Add to cart</a>
+                    </p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a id="@item.product_id" href="~/@linkAction/Index/@item.product_id" class="hidden-sm">More details</a>
+                    </p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+}

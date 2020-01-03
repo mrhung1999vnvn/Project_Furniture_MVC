@@ -1,0 +1,23 @@
+﻿:root{
+
+}
+
+h3.heading {
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: #333;
+}
+h3.footing {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: #333;
+}
+.product-grids {
+   display:block;
+   margin:auto;
+   padding:0 60px;
+}

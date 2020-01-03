@@ -1,0 +1,45 @@
+﻿@model Web_NoiThat.Models.Extended.UserMetadata
+
+@using (Html.BeginForm("Registation", "Home"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-form-label" })
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @id = "Fname" })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, new { @class = "col-form-label" })
+        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @id = "LName" })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailID, new { @class = "col-form-label" })
+        @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control", @id = "email" })
+        @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+        @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, new { @class = "col-form-label" })
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "password" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-form-label" })
+        @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control", @id = "ConfirmPass" })
+        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="sub-w3l">
+        <div class="sub-agile">
+            <input type="checkbox" id="brand2" value="">
+            <label for="brand2" class="mb-3">
+                <span></span>I Accept to the Terms & Conditions
+            </label>
+        </div>
+    </div>
+    <div class="right-w3l">
+        <input type="submit" class="form-control" value="Register">
+    </div>
+
+}

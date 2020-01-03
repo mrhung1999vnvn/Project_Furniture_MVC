@@ -1,0 +1,144 @@
+﻿:root{
+
+}
+/*Banner của trang chủ*/
+.banner {
+    background-image: url('../../Images/banner2.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    background-attachment: fixed;
+}
+.banner-text {
+    padding: 18vw 0 4vw;
+}
+.layer {
+    background: rgba(34,34,34,0.6);
+}
+
+.agileinfo-logo h2 {
+    color: #fff;
+    display: inline-block;
+    font-size: 4em;
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+}
+h3.txt-w3_agile {
+    font-size: 3.5em;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 100;
+}
+
+.banner-para p {
+    color: #eee;
+    font-size: 16px;
+    letter-spacing: 2px;
+    line-height: 32px;
+}
+
+/*Read More*/
+.banner-para a {
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 11px 30px;
+    border: 2px solid #fff;
+    display: inline-block;
+    margin-top: 20px;
+    transition:.4s ease;
+}
+    .banner-para a:hover {
+        background: #00e676;
+        border: 2px solid #00e676;
+        text-decoration: none;
+        color: #fff;
+        transform: scale(0.9);
+    }
+
+/*Button Scroll*/
+.thim-click-to-bottom {
+    margin-top: 2em;
+}
+.thim-click-to-bottom .rotate .scroll i {
+    color: #fd5c63;
+    font-size:50px;
+}
+
+/*Animation with button arrow down*/
+.rotate a i {
+    width: 36px;
+    height: 36px;
+    -webkit-animation: bounce 2s infinite ease-in-out;
+    z-index: 9;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+}
+@-webkit-keyframes bounce {
+    from, 20%, 53%, 80%, to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    40%, 43% {
+        -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0);
+    }
+
+    70% {
+        -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0);
+    }
+
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0);
+    }
+}
+@keyframes bounce {
+    from, 20%, 53%, 80%, to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    40%, 43% {
+        -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0);
+    }
+
+    70% {
+        -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0);
+    }
+
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+.bounce {
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+}

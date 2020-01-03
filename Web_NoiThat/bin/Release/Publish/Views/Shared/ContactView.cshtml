@@ -1,0 +1,30 @@
+﻿@model Web_NoiThat.Models.UserMail
+
+<div class="col-md-12">
+    @using (Html.BeginForm("SendMail", "Home", new { @id = "formContact" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, new { @class = "col-form-label" })
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="left-w3l">
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i> Send Now
+            </button>
+        </div>
+    }
+
+</div>
+  

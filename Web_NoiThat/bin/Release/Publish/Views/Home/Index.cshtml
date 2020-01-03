@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Trang Chu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="banner" id="home">
+    <div class="layer">
+        <div class="container">
+            <div class="banner-text">
+                <div class="slider-info text-center">
+                    <div class="agileinfo-logo">
+                        <h2> TDMU Furniture</h2>
+                    </div>
+                    <h3 class="txt-w3_agile"> Design Your With Our Idea</h3>
+                </div>
+                <div class="row banner-grids text-center mt-md-5 mt-3">
+                    <div class="col-lg-3 col-md-2">
+                        <img src="~/Images/chair.png" class="img-fluid" alt="chair_png" />
+                    </div>
+                    <div class="col-lg-6 col-md-8 banner-para">
+                        <p class="">
+                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint.
+                            Suspendisse venenatis
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-2">
+                        <img src="~/Images/bathing.png" class="img-fluid" alt="bath_png" />
+                    </div>
+                </div>
+                <div class="thim-click-to-bottom text-center">
+                    <div class="rotate">
+                        <a href="#categories" style="color:#fd5c63;font-size: 50px;">
+                            <i class="fa fa-angle-double-down"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ---- Categories ------ *@
+<div class="Categories-product" id="categories">
+    <div class="container">
+        <div class="row p-4" style="border-bottom: 1px solid gray;">
+            <div class="col-md-4 text-center">
+                <figure class="Fixed-Image-Category">
+                    <img src="~/Images/Categories/dinning-room.jpg" alt="dinning_room" />
+                    <figcaption>
+                        <h2><span>Dinning</span> Room</h2>
+                        <a href="#">Shop now</a>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4 text-center">
+                <figure class="Fixed-Image-Category">
+                    <img src="~/Images/Categories/living-room.jpg" alt="living_room" />
+                    <figcaption>
+                        <h2><span>Living</span> Room</h2>
+                        <a href="#">Shop now</a>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4 text-center">
+                <figure class="Fixed-Image-Category">
+                    <img src="~/Images/Categories/Other.jpg" alt="other_room" />
+                    <div class="layer-categories"></div>
+                    <figcaption>
+                        <h2><span>Other</span></h2>
+                        <a href="#">Shop now</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    Html.RenderPartial("~/Views/Home/Load_Product.cshtml");
+}
+<div class="footer-top">
+    <div class="container">
+        <div class="row">
+            <div class="pt-4 col-md-12">
+                <hr />
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="footing mb-4 ">
+                            Thông tin
+                        </h3>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="mb-3 footer-pag">
+                            Chúng tôi sẽ trả lời thư điện tử và các yêu cầu từ khách hàng và đối tác trong vòng 24 tiếng đồng hồ. Quý khách có thể liên hệ trực tiếp với chúng tôi tại địa chỉ showroom hoặc qua điện thoại hotline hoặc điện thoại bàn để tạo sự thuận tiện cho quý vị trong giao dịch.
+                        </p>
+                        <p class="mb-3 footer-pag">
+                            We will respond to emails and requests from customers and partners within 24 hours. You can contact us directly at showroom or via hotline or landline for your convenience.
+                        </p>
+                        <p class="Contact_address footer-pag">
+                            <i class="fa fa-map-marker"></i>
+                            <span class="ml-3">06 Đường Trần Văn Ơn, Thủ Dầu Một, Bình Dương</span>
+                        </p>
+                        <p class="Contact_phone footer-pag">
+                            <i class="fa fa-phone"></i>
+                            <span class="ml-3">096.123.456 / 096.333.111</span>
+                        </p>
+                        <p class="Contact_phone footer-pag">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="ml-3">phamhoaihung2408@student.tdmu.edu.vn</span>
+                        </p>
+                        <p class="Contact_phone footer-pag">
+                            <i class="fa fa-globe"></i>
+                            <span class="ml-3">https://2furniture.com</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="footing mb-3 ">
+                            Liên Hệ
+                        </h3>
+                        @{
+                            Html.RenderPartial("~/Views/Shared/ContactView.cshtml", new Web_NoiThat.Models.UserMail());
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buttons" style="margin-top: 12%; float:right; position: relative; ">
+    @if (Session["modal"] == "true")
+    {
+        <a href="@Url.Action("Index","Cart")" title="Goto Cart" class="btn btn-primary btn-lg" style="position: fixed; right: 0; bottom: 0; z-index:999">
+            <i class="fa fa-shopping-cart"></i> Goto Cart
+        </a>
+    }
+</div>

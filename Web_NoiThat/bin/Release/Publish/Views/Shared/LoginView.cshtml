@@ -1,0 +1,42 @@
+﻿@model Web_NoiThat.Models.UserLogin
+
+<div class="col-md-6 align-self-center" id="DivLogin">
+    @using (Html.BeginForm("Login", "Home", new { @id = "formLogin" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "col-form-label" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            <p id="test2"></p>
+            @Html.ValidationMessage("PasswordError", new { @class = "text-danger" })
+        </div>
+        <div class="right-w3l">
+            <input type="submit" class="form-control" value="Login">
+        </div>
+    }
+    <script>
+        $("#formLogin").submit(function (e) {
+            var form = $('#formLogin');
+            if (form.valid()) {
+                $.ajax({
+                    url: this.action,
+                    data: form.serialize(),
+                    success: function (content) {
+                        $('#test2').html(content);
+                    },
+                    error: function myfunction(result) {
+                        $("#test").html(result);
+                    }
+                });
+            }
+            return false;
+        });
+    </script>
+</div>
+

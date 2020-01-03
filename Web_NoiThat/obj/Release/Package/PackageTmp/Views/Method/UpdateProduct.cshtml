@@ -1,0 +1,193 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model Web_NoiThat.Models.Product
+<div class="panel-header panel-header-sm">
+</div>
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header mb-3">
+                    <h5 class="title">Update Product</h5>
+                </div>
+                <hr />
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("Update", "Method", FormMethod.Post, new { enctype = "multipart/form-data", @id = "updatedForm" }))
+                    {
+                        <div class="row mb-5">
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(model => model.product_id, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(model => model.product_id, new { @class = "form-control", @id = "product-id ", @value = "sdas" })
+                                        @Html.ValidationMessageFor(model => model.product_id, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-12">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(model => model.product_name, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(model => model.product_name, new { @class = "form-control", @id = "product-id" })
+                                        @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(model => model.price, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(model => model.price, new { @class = "form-control", @id = "product-id" })
+                                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="category">Categories:</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select class="form-control form-control-lg" name="category">
+                                            @if (Model.id_cat == 1)
+                                            {
+                                                <option value="1" selected>Dinning Room</option>
+                                                <option value="2">Living Room</option>
+                                                <option value="3">Other...</option>
+                                            }
+                                            else if (Model.id_cat == 2)
+                                            {
+                                                <option value="1">Dinning Room</option>
+                                                <option value="2" selected>Living Room</option>
+                                                <option value="3">Other...</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="1">Dinning Room</option>
+                                                <option value="2">Living Room</option>
+                                                <option value="3" selected>Other...</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Quantities:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-group input-number-group">
+                                            <div class="input-group-button">
+                                                <span class="input-number-decrement" style="border-radius:50px">-</span>
+                                            </div>
+                                            <input class="input-number" style="border-radius:20px" id="quanti" name="quanti" type="number" value="@Model.product_quantities" min="1">
+                                            <div class="input-group-button">
+                                                <span class="input-number-increment" style="border-radius:50px">+</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="status">Status:</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select class="form-control form-control-lg" name="status">
+                                            @if (Model.status == "còn hàng")
+                                            {
+                                                <option value="1" selected>Enable</option>
+                                                <option value="2">Disabled</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="1">Enable</option>
+                                                <option value="2" selected>Disabled</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(model => model.description, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="email">Upload Images:</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="file" class="filepond" name="filepond" id="filepond"
+                                               data-max-file-size="3MB" data-max-files="3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-sm-offset-2 col-sm-10 col-md-12 text-right">
+                                        <input type="button" value="Update" class="buy--btn" style="border-radius:30px" id="btnUpdate" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.input-number-increment').click(function () {
+        var $input = $(this).parents('.input-number-group').find('.input-number');
+        var val = parseInt($input.val(), 10);
+        $input.val(val + 1);
+    });
+
+    $('.input-number-decrement').click(function () {
+        var $input = $(this).parents('.input-number-group').find('.input-number');
+        var val = parseInt($input.val(), 10);
+        $input.val(val - 1);
+    })
+</script>
+
+
+@* Submit form with ajax *@
+<script src="~/Scripts/Animation/Sweet-Custom.js"></script>

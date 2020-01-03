@@ -1,0 +1,187 @@
+﻿
+@{
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Furniture</title>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Admin/admin")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <!-- Style -->
+    <link href="~/Content/Admin/Table/fresh-bootstrap-table.css" rel="stylesheet" />
+    <!-- Fonts and icons -->
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
+
+
+
+
+    <!-- Filepond stylesheet -->
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css" rel="stylesheet">
+
+
+    <!---->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="~/Scripts/SweetAlert/dist/sweetalert2.all.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+    <script src="~/Scripts/SweetAlert/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/Scripts/SweetAlert/dist/sweetalert2.min.css">
+
+</head>
+<body>
+    <div class="wrapper">
+        @{
+            Html.RenderPartial("~/Views/Shared/HeaderAdmin.cshtml");
+        }
+        <div class="main-panel" id="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+                @{
+                    Html.RenderPartial("~/Views/Admin/Navbar.cshtml");
+                }
+            </nav>
+            @RenderBody()
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/Chart")
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js"></script>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+    <script type="text/javascript">
+        var $table = $('#fresh-table')
+        var $alertBtn = $('#alertBtn')
+
+        window.operateEvents = {
+            'click .like': function (e, value, row, index) {
+                alert('You click like icon, row: ' + JSON.stringify(row))
+                console.log(value, row, index)
+            },
+            'click .edit': function (e, value, row, index) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Method/UpdateProduct",
+                    data: '{id: "' + row.id + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    
+                });
+                //alert('You click edit icon, row: ' + row.id)
+                //console.log(value, row, index)
+            },
+            'click .remove': function (e, value, row, index) {
+               
+                //Sweet-Alert
+                Swal.fire({
+                    title: 'You want delete this record?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#f65c78',
+                    cancelButtonColor: '#6c7b95',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your product have deleted.',
+                            'success'
+                        )
+
+                        //Delete in table
+                        $table.bootstrapTable('remove', {
+                            field: 'id',
+                            values: [row.id],
+                        })
+
+                        //Delete in database
+                        $.ajax({
+                            type: "POST",
+                            url: "/Method/Delete",
+                            data: '{id: "' + row.id + '" }',
+                            contentType: "application/json; charset=utf-8",
+
+                        });
+                    }
+                })
+                
+            }
+        }
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
+                '<i class="fa fa-heart"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Edit" class="table-action edit" href="/Method/UpdateProduct/'+row.id+'" id="'+row.id+'" title="Edit">',
+                '<i class="fa fa-edit"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove" onclick="alert("asdasdsad")">',
+                '<i class="fa fa-trash"></i>',
+                '</a>'
+            ].join('')
+        }
+
+        $(function () {
+            $table.bootstrapTable({
+                classes: 'table table-hover table-striped',
+                toolbar: '.toolbar',
+
+                search: true,
+                showRefresh: true,
+                showToggle: true,
+                showColumns: true,
+                pagination: true,
+                striped: true,
+                sortable: true,
+                pageSize: 8,
+                pageList: [8, 10, 25, 50, 100],
+
+                formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                    return ''
+                },
+                formatRecordsPerPage: function (pageNumber) {
+                    return pageNumber + ' rows visible'
+                }
+            })
+
+            $alertBtn.click(function () {
+                alert('You pressed on Alert')
+            })
+        })
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+        });
+    </script>
+    @* For chart *@
+
+    <!-- add before </body> -->
+    @RenderSection("Scripts", false)
+</body>
+</html>
